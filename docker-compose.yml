@@ -1,0 +1,17 @@
+version: "3.3"
+
+services:
+  gpio-discord-bot:
+    build: .
+    container_name: jetson-gpio-discord-bot
+    privileged: true
+    network_mode: host
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Tokyo
+      - DISCORD_BOT_TOKEN=${DISCORD_BOT_TOKEN} # .envから読み取る
+    devices:
+      - "/dev/gpiochip0:/dev/gpiochip0"
+    volumes:
+      - "/sys/class/gpio:/sys/class/gpio"
+    command: python3 /app/bot.py
