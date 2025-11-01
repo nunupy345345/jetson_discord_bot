@@ -10,6 +10,7 @@ services:
     environment:
       - TZ=Asia/Tokyo
       - DISCORD_BOT_TOKEN=${DISCORD_BOT_TOKEN} # .envから読み取る
+      - DISCORD_CHANNEL_ID=${DISCORD_CHANNEL_ID} # .envから読み取る
     devices:
       - "/dev/gpiochip0:/dev/gpiochip0"
     volumes:

@@ -11,7 +11,7 @@ try:
     while True:
         state = GPIO.input(PIN)
         if state == GPIO.LOW:
-            print("CLOSE（磁石近い）")
+            print("CLOSE（磁石近い）",state)
         else:
             print("OPEN（磁石離れている）")
         time.sleep(0.5)

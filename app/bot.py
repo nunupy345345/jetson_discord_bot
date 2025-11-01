@@ -15,7 +15,6 @@ logging.basicConfig(
 
 TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 CHANNEL_ID = int(os.getenv("DISCORD_CHANNEL_ID", "0"))
-GUILD_ID = int(os.getenv("DISCORD_GUILD_ID", "0"))
 
 # ───────────────────────────────
 # GPIO設定
@@ -51,13 +50,8 @@ async def on_ready():
     logging.info(f" Logged in as {client.user}")
 
     try:
-        if GUILD_ID:
-            guild = discord.Object(id=GUILD_ID)
-            synced = await tree.sync(guild=guild)
-            logging.info(f"Guild commands synced: {[cmd.name for cmd in synced]}")
-        else:
-            synced = await tree.sync()
-            logging.info(f"Global commands synced: {[cmd.name for cmd in synced]}")
+        synced = await tree.sync()
+        logging.info(f"Global commands synced: {[cmd.name for cmd in synced]}")
     except Exception as e:
         logging.error(f"Command sync failed: {e}")
 
